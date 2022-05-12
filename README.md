@@ -13,7 +13,9 @@ Description - Purpose of the project is to fetch the latest covid-19 data from A
  
  Project Execution ::
  It contains multiple python files and folders. 
+ 
  To start execution go with main.py python file and then proceed further. 
+ 
  Procees Involved :
  1. fetch data From API
  2. clean and convert data in CSV format.
@@ -23,6 +25,7 @@ Description - Purpose of the project is to fetch the latest covid-19 data from A
  
  
  I also build restfule API's to display the output of different queries.
+ 
  Process to Execute RestFul API's
  
  1. Execute file API.py(prsent inside RestFul API folder)

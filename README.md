@@ -1,9 +1,9 @@
 # CovidDataAnalysisWithSpark
 
 Description - Purpose of the project is to fetch the latest covid-19 data from API and make different sort of analysis. 
-                  We know all over the places peoples are fighting with covid and data is being produced in each and every.
+                  We know all over the places peoples are fighting with covid and data is being produced in each and every hours.
                   So through this project we make sure to fetch those latest data using API's and collect some insightful 
-                  informations. Once information is gathered then display the data through RestFul API's
+                  informations. Once information is gathered then display the data through RestFul API's.
                   
                   
  API URL - https://covid-193.p.rapidapi.com/statistics

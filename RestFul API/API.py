@@ -5,9 +5,11 @@ from DataFrameObject import createDataFrame, readCSVFile
 from DataFrameToList import dfToRDD
 from getQueryOutput import *
 from flask import Flask, jsonify
+import sys
 
+str1 = sys.path[1]
 str = """--------------------------------------------------------------------------------------------------------------------Type Following to get the results------------------------------------------------------------------------------------------------------------- 
-        Type Query0 : Show the data fetched from API------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        Type Query0 : Show the data Collected from API------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         Type Query1 : Most affected country among all the countries ( total death/total covid cases)-------------------------------------------------------------------------------------------------------------------------------------------------------------
         Type Query2 : Least affected country among all the countries ( total death/total covid cases)-----------------------------------------------------------------------------------------------------------------------------------------------------------
         Type Query3 : Country with highest Covid Cases------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -19,10 +21,12 @@ str = """-----------------------------------------------------------------------
         Type Query9 : Country still suffering from covid (highest critical cases)--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         
         """
- 
+
+filePath = str1 + "/InputData/covid_csv_file.csv"
+print(filePath)
 spark = createDataFrame()
-covidData = spark.read.options(header='True', inferSchema='True').csv(
-    "/Users/vikashkumarbarnwal/PycharmProjects/CovidAnalysisWithSpark/InputData/covid_csv_file.csv")
+covidData = spark.read.options(header='True', inferSchema='True').csv(filePath)
+AllCovidData = covidData
 
 covidData = filterSomeInfo(covidData)
 
@@ -34,6 +38,14 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     return str
+
+
+@app.route('/Query0')
+def showDataCollectedFromAPI():
+    AllCovidData.orderBy(col("Population").desc())
+    dataList = DFToRDDToList(AllCovidData)
+    response = responseDataCollectedFromAPI(dataList)
+    return response
 
 
 @app.route('/Query1')
